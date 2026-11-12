@@ -38,3 +38,22 @@ export type PokemonInstance = {
   types: PokemonTuple;
   stats: StatBlock;
 };
+
+export type TypeMultiplier = 0 | 0.5 | 2;
+
+export type TypeEffectivenessMatrix = Record<
+  PokemonType,
+  Partial<Record<PokemonType, TypeMultiplier>>
+>;
+
+export type ModifierCalculator = (baseDamage: number) => number;
+
+export type StatusCondition =
+  | "Burn"
+  | "Paralysis"
+  | "Freeze"
+  | "Poison"
+  | "Sleep"
+  | "None";
+
+export type HeldItem = "ChoiceBand" | "LifeOrb" | "Leftovers" | "None";
