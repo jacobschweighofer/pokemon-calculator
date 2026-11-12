@@ -1,4 +1,4 @@
-import type { TypeEffectivenessMatrix } from "../types/pokemon";
+import type { TypeEffectivenessMatrix, StatStages } from "../types/pokemon";
 
 export const TYPE_EFFECTIVENESS_MATRIX: TypeEffectivenessMatrix = {
   Normal: { Rock: 0.5, Steel: 0.5, Ghost: 0 },
@@ -125,4 +125,21 @@ export const TYPE_EFFECTIVENESS_MATRIX: TypeEffectivenessMatrix = {
     Steel: 0.5,
     Fire: 0.5,
   },
+} as const;
+
+// All object keys are converted to strings under the hood anyways in JS
+export const STAT_STAGES: StatStages = {
+  6: { numerator: 8, denominator: 2 },
+  5: { numerator: 7, denominator: 2 },
+  4: { numerator: 6, denominator: 2 },
+  3: { numerator: 5, denominator: 2 },
+  2: { numerator: 4, denominator: 2 },
+  1: { numerator: 3, denominator: 2 },
+  0: { numerator: 2, denominator: 2 },
+  "-1": { numerator: 2, denominator: 3 },
+  "-2": { numerator: 2, denominator: 4 },
+  "-3": { numerator: 2, denominator: 5 },
+  "-4": { numerator: 2, denominator: 6 },
+  "-5": { numerator: 2, denominator: 7 },
+  "-6": { numerator: 2, denominator: 8 },
 } as const;
