@@ -14,11 +14,20 @@ export const createPokemonInstance = (
   };
 };
 
-export const renamon = createPokemonInstance("Renamon", 50, ["Normal"], {
-  hp: 100,
-  atk: 100,
-  def: 100,
-  spa: 100,
-  spd: 100,
-  spe: 100,
+export const gengar = createPokemonInstance("Gengar", 50, ["Ghost", "Poison"], {
+  hp: 60,
+  atk: 65,
+  def: 60,
+  spa: 130,
+  spd: 75,
+  spe: 110,
+});
+
+export const sylveon = createPokemonInstance("Sylveon", 50, ["Fairy"], {
+  hp: 95,
+  atk: 65,
+  def: 65,
+  spa: 110,
+  spd: 130,
+  spe: 60,
 });

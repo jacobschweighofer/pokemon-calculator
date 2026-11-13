@@ -1,18 +1,24 @@
 import { TYPE_EFFECTIVENESS_MATRIX, STAT_STAGES } from "./matrices";
 import type {
   PokemonType,
+  PokemonTuple,
   ModifierCalculator,
   StatusCondition,
   HeldItem,
   Stage,
+  DamageResult,
 } from "../types/pokemon";
 
+const normalizeTypes = (
+  input: PokemonType | PokemonTuple,
+): readonly PokemonType[] => (typeof input === "string" ? [input] : input);
+
 export const getTypeMultiplier = (
-  attackerType: PokemonType | PokemonType[],
-  defenderType: PokemonType | PokemonType[],
+  attackerType: PokemonType | PokemonTuple,
+  defenderType: PokemonType | PokemonTuple,
 ): number => {
-  const attacker = Array.isArray(attackerType) ? attackerType : [attackerType];
-  const defender = Array.isArray(defenderType) ? defenderType : [defenderType];
+  const attacker = normalizeTypes(attackerType);
+  const defender = normalizeTypes(defenderType);
 
   let totalMultiplier = 1;
 
@@ -71,11 +77,12 @@ export const calculateBaseDamage = (
   return Math.floor(step2 / 50) + 2;
 };
 
-const applyStatStage = (baseStat: number, stage: Stage): number => {
+export const applyStatStage = (baseStat: number, stage: Stage): number => {
   const { numerator, denominator } = STAT_STAGES[stage];
   // Always multiply before you divide, and floor only at the final step.
   return Math.floor((baseStat * numerator) / denominator);
 };
 
-const result = applyStatStage(90, 2);
-console.log(result);
+/*const calculateDamage = (attacker, defender, move): DamageResult => {
+
+}*/

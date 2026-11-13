@@ -27,10 +27,9 @@ export type PokemonType =
   | "Steel"
   | "Fairy";
 
-export type PokemonTuple = readonly [
-  primary: PokemonType,
-  secondary?: PokemonType,
-];
+export type PokemonTuple =
+  | readonly [primary: PokemonType]
+  | readonly [primary: PokemonType, secondary: PokemonType];
 
 export type PokemonInstance = {
   name: string;
@@ -62,3 +61,9 @@ export type Stage = 6 | 5 | 4 | 3 | 2 | 1 | 0 | -1 | -2 | -3 | -4 | -5 | -6;
 export type Fraction = { numerator: number; denominator: number };
 
 export type StatStages = Record<Stage, Fraction>;
+
+export interface DamageResult {
+  minDamage: number;
+  maxDamage: number;
+  rolls: number[];
+}
