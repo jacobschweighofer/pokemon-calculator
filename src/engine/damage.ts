@@ -9,7 +9,7 @@ import type {
   DamageResult,
 } from "../types/pokemon";
 
-const normalizeTypes = (
+export const normalizeTypes = (
   input: PokemonType | PokemonTuple,
 ): readonly PokemonType[] => (typeof input === "string" ? [input] : input);
 
@@ -38,6 +38,7 @@ export const createModifierFactory = (
   return (baseDamage: number) => Math.floor(baseDamage * multiplier);
 };
 
+export const applyCritical = createModifierFactory(1.5);
 export const applyStab = createModifierFactory(1.5);
 export const applyLifeOrb = createModifierFactory(2.0);
 

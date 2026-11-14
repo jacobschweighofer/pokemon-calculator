@@ -1,3 +1,5 @@
+import type { PokemonMoves } from "../engine/moves";
+
 export type StatBlock = {
   hp: number;
   atk: number;
@@ -6,6 +8,10 @@ export type StatBlock = {
   spd: number;
   spe: number;
 };
+
+export type Stats = keyof StatBlock;
+
+export type StatChangeStats = Exclude<Stats, "hp">;
 
 export type PokemonType =
   | "Normal"
@@ -31,12 +37,16 @@ export type PokemonTuple =
   | readonly [primary: PokemonType]
   | readonly [primary: PokemonType, secondary: PokemonType];
 
-export type PokemonInstance = {
-  name: string;
-  level: number;
-  types: PokemonTuple;
-  stats: StatBlock;
-};
+export type PokemonMoveList = readonly [PokemonMoves, ...PokemonMoves[]];
+
+export type PokemonInstance<TMoves extends PokemonMoveList = PokemonMoveList> =
+  {
+    name: string;
+    level: number;
+    types: PokemonTuple;
+    stats: StatBlock;
+    moves: TMoves;
+  };
 
 export type TypeMultiplier = 0 | 0.5 | 2;
 
@@ -67,3 +77,11 @@ export interface DamageResult {
   maxDamage: number;
   rolls: number[];
 }
+
+export type PokemonMove = {
+  type: PokemonType;
+  power: number;
+  category: "Physical" | "Special" | "Status";
+};
+
+export type PokemonMoveRecord = Record<string, PokemonMove>;
